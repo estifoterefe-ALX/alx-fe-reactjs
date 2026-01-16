@@ -2,15 +2,15 @@ import React from "react";
 function Contact() {
   const [formData, setFormData] = React.useState({
     name: "",
-    age: 0,
+    age: null,
     email: "",
   });
   const handleChange = (event) => {
-    const { name, value } = event;
+    const { name, value } = event.target;
     setFormData((prev) => {
       return {
         ...prev,
-        [name]: value,
+        [name]: name === "age" ? Number(value) : value,
       };
     });
   };
@@ -28,35 +28,42 @@ function Contact() {
           }}
         >
           <h1>Contact Us</h1>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            placeholder="Please Enter Name"
-            value={formData.name}
-          />
-          <label htmlFor="age">Age:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            required
-            placeholder="Please Enter Age"
-            value={formData.age}
-            onChange={handleChange}
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder="Please Enter Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+          <div>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Please Enter Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="age">Age:</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              required
+              placeholder="Please Enter Age"
+              value={formData.age}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Please Enter Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
         </form>
       </div>
     </>

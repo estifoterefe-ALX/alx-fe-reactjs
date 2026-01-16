@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import HomePage from "./components/Home";
 import AboutPage from "./components/About";
 import ContactPage from "./components/Contact";
@@ -7,7 +7,7 @@ import Services from "./components/Services";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <nav>
         <ul style={{ display: "flex", gap: "1rem", listStyle: "none" }}>
           <li>
@@ -24,15 +24,13 @@ function App() {
           </li>
         </ul>
       </nav>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/services" element={<Services />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/services" element={<Services />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
