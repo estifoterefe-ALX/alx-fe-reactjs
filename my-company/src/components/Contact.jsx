@@ -14,7 +14,10 @@ function Contact() {
       };
     });
   };
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Form submitted!");
+  };
   return (
     <>
       <div style={{ padding: "20px" }}>
@@ -64,6 +67,7 @@ function Contact() {
               onChange={handleChange}
             />
           </div>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </>
