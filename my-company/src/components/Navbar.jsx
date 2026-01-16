@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav>
-      <ul style={{ display: "flex", gap: "1rem", listStyle: "none" }}>
+      <ul
+        style={{
+          display: "flex",
+          gap: "1rem",
+          listStyle: "none",
+          backgroundColor: "#f0f0f0",
+          justifyContent: "space-between",
+        }}
+      >
         <li>
           <Link to="/">Home</Link>
         </li>
