@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecipeStore } from "./recipeStore";
-function EditRecipeForm() {
+function updateRecipeForm() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { getRecipeById, editRecipe } = useRecipeStore();
+  const { getRecipeById, updateRecipe } = useRecipeStore();
   const recipeForEdit = getRecipeById(id);
   useEffect(() => {
     setDescription(recipeForEdit.description);
@@ -19,7 +19,7 @@ function EditRecipeForm() {
         title: title,
         description: description,
       };
-      editRecipe(id, recpie);
+      updateRecipe(id, recpie);
       alert("Recipe Edited Successfully");
     } catch (error) {
       console.error(error);
@@ -102,4 +102,4 @@ function EditRecipeForm() {
     </form>
   );
 }
-export default EditRecipeForm;
+export default updateRecipeForm;

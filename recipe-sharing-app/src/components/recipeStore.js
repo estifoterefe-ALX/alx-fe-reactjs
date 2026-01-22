@@ -10,7 +10,7 @@ export const useRecipeStore = create((set, get) => ({
       recipes: [...state.recipes, recipe],
     }));
   },
-  editRecipe: (id, newRecipe) => {
+  updateRecipe: (id, newRecipe) => {
     set((state) => ({
       recipes: state.recipes.map((recipe) =>
         recipe.id === id ? { ...recipe, ...newRecipe } : recipe,
@@ -43,7 +43,7 @@ export const useRecipeStore = create((set, get) => ({
       return { favorite: fav };
     });
   },
-  removeRecipe: (id) =>
+  deleteRecipe: (id) =>
     set((state) => {
       const recipes = state.recipes.filter((i) => i.id !== id);
       return { recipes: recipes };

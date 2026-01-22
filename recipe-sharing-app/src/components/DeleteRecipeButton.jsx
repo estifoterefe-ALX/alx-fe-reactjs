@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useRecipeStore } from "./recipeStore";
 export const DeleteRecipeButton = ({ id }) => {
   const navigate = useNavigate();
-  const { removeRecipe } = useRecipeStore();
+  const { deleteRecipe } = useRecipeStore();
   const handleDelete = () => {
     try {
-      removeRecipe(id);
+      deleteRecipe(id);
       alert("Recipe Deleted");
     } catch (error) {
       console.error(error);

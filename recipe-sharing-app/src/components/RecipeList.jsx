@@ -6,7 +6,7 @@ function RecipeList() {
   // Track which recipe's menu is open
   const [openMenuId, setOpenMenuId] = useState(null);
   const navigate = useNavigate();
-  const { recipes, addToFavorites, removeFavoriteRecipe, removeRecipe } =
+  const { recipes, addToFavorites, removeFavoriteRecipe, deleteRecipe } =
     useRecipeStore();
   const toggleMenu = (id) => {
     setOpenMenuId(openMenuId === id ? null : id);

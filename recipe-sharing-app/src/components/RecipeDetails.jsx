@@ -60,7 +60,7 @@ export const RecipeDetails = () => {
             cursor: "pointer",
           }}
           onClick={() => {
-            navigate(`/editRecipe/${id}`);
+            navigate(`/updateRecipe/${id}`);
           }}
         >
           ✏️ Edit Recipe
