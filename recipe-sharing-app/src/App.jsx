@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import RecipeList from "./components/RecipeList";
+import FavoriteRecipes from "./components/FavoritesList";
+import AddRecipe from "./components/AddRecipeForm";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [active, setActive] = useState("Recipes"); // start with "Recipes"
+
+  const menuItems = [
+    { name: "Recipes", path: "/" },
+    { name: "Favorites", path: "/favorites" },
+    { name: "Add New Recipe", path: "/addRecipe" },
+  ];
 
   return (
-    <>
+    <BrowserRouter>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {/* Menu */}
+        <nav style={{ padding: "10px", background: "#f0f0f0" }}>
+          {menuItems.map((item) => (
+            <Link
+              to={item.path}
+              key={item.path}
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                onClick={() => setActive(item.name)} // store name as string
+                style={{
+                  marginRight: "10px",
+                  padding: "8px 16px",
+                  background: active === item.name ? "#007bff" : "#fff",
+                  color: active === item.name ? "#fff" : "#000",
+                  border: "1px solid #007bff",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                {item.name}
+              </button>
+            </Link>
+          ))}
+        </nav>
+
+        {/* Display Active Page */}
+
+        {/* Routes (optional placeholder for actual pages) */}
+        <Routes>
+          <Route path="/" element={<RecipeList />} />
+          <Route path="/favorites" element={<FavoriteRecipes />} />
+          <Route path="/addRecipe" element={<AddRecipe />} />
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
