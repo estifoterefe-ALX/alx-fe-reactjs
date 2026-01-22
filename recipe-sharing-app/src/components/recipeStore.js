@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useRecipe = create((set, get) => ({
+export const useRecipeStore = create((set, get) => ({
   recipes: [],
   favorite: [],
   recipesById: () => Object.fromEntries(get().recipes.map((r) => [r.id, r])),
@@ -19,7 +19,7 @@ export const useRecipe = create((set, get) => ({
       }));
     }
   },
-  setRecipe: (recipes) => {
+  setRecipes: (recipes) => {
     if (Array.isArray(recipes)) {
       set({ recipes });
     }
