@@ -12,7 +12,8 @@ function EditRecipeForm() {
     setDescription(recipeForEdit.description);
     setTitle(recipeForEdit.title);
   }, [recipeForEdit]);
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     try {
       const recpie = {
         id: id,
