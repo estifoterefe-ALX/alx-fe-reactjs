@@ -1,8 +1,26 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecipeStore } from "./recipeStore";
 function AddRecipeForm() {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const handleSubmit = () => {};
+  const addRecipe = useRecipeStore((state) => state.addRecipe);
+  const handleSubmit = () => {
+    try {
+      const recpie = {
+        id: crypto.randomUUID(),
+        title: title,
+        description: description,
+      };
+      addRecipe(recpie);
+      alert("Recipe Added Successfully");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      navigate("/");
+    }
+  };
   return (
     <form
       onSubmit={handleSubmit}
