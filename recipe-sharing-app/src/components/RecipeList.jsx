@@ -1,9 +1,11 @@
 // RecipeList.jsx
 import React, { useState } from "react";
 import { useRecipeStore } from "./recipeStore";
+import { useNavigate } from "react-router-dom";
 function RecipeList() {
   // Track which recipe's menu is open
   const [openMenuId, setOpenMenuId] = useState(null);
+  const navigate = useNavigate();
   const { recipes, addToFavorites, removeFavoriteRecipe, removeRecipe } =
     useRecipeStore();
   const toggleMenu = (id) => {
@@ -102,7 +104,7 @@ function RecipeList() {
                     </button>
 
                     <button
-                      onClick={() => alert(`Viewing details}`)}
+                      onClick={() => navigate(`/recipeDetail/${recipe.id}`)}
                       style={{
                         padding: "6px 12px",
                         border: "none",

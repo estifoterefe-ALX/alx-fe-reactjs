@@ -10,6 +10,14 @@ export const useRecipeStore = create((set, get) => ({
       recipes: [...state.recipes, recipe],
     }));
   },
+  editRecipe: (id, newRecipe) => {
+    set((state) => ({
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === id ? { ...recipe, ...newRecipe } : recipe,
+      ),
+    }));
+  },
+
   addToFavorites: (recipeId) => {
     const byId = get().recipesById();
     const recipe = byId[recipeId];
@@ -23,6 +31,11 @@ export const useRecipeStore = create((set, get) => ({
     if (Array.isArray(recipes)) {
       set({ recipes });
     }
+  },
+  getRecipeById: (id) => {
+    const byId = get().recipesById();
+    const recipe = byId[id];
+    return recipe;
   },
   removeFavoriteRecipe: (id) => {
     set((state) => {

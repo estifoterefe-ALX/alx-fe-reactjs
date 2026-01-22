@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import RecipeList from "./components/RecipeList";
 import FavoriteRecipes from "./components/FavoritesList";
 import AddRecipeForm from "./components/AddRecipeForm";
+import { RecipeDetails } from "./components/RecipeDetails";
+import EditRecipeForm from "./components/EditRecipeForm";
 
 function App() {
   const [active, setActive] = useState("Recipes"); // start with "Recipes"
@@ -50,6 +52,8 @@ function App() {
           <Route path="/" element={<RecipeList />} />
           <Route path="/favorites" element={<FavoriteRecipes />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
+          <Route path="/recipeDetail/:id" element={<RecipeDetails />} />
+          <Route path="/editRecipe/:id" element={<EditRecipeForm />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>
