@@ -1,5 +1,5 @@
 import { useState } from "react";
-function AddRecipe() {
+function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const handleSubmit = () => {};
@@ -78,4 +78,4 @@ function AddRecipe() {
     </form>
   );
 }
-export default AddRecipe;
+export default AddRecipeForm;

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import RecipeList from "./components/RecipeList";
 import FavoriteRecipes from "./components/FavoritesList";
-import AddRecipe from "./components/AddRecipeForm";
+import AddRecipeForm from "./components/AddRecipeForm";
 
 function App() {
   const [active, setActive] = useState("Recipes"); // start with "Recipes"
@@ -49,7 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<RecipeList />} />
           <Route path="/favorites" element={<FavoriteRecipes />} />
-          <Route path="/addRecipe" element={<AddRecipe />} />
+          <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>
