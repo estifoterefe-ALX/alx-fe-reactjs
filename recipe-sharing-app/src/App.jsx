@@ -6,6 +6,7 @@ import FavoriteRecipes from "./components/FavoritesList";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
 import EditRecipeForm from "./components/EditRecipeForm";
+import SeachBar from "./components/SearchBar";
 
 function App() {
   const [active, setActive] = useState("Recipes"); // start with "Recipes"
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <SeachBar />
       <div>
         {/* Menu */}
         <nav style={{ padding: "10px", background: "#f0f0f0" }}>

@@ -3,6 +3,8 @@ import { create } from "zustand";
 export const useRecipeStore = create((set, get) => ({
   recipes: [],
   favorite: [],
+  filteredRecipes: [],
+  isSeaching: false,
   recipesById: () => Object.fromEntries(get().recipes.map((r) => [r.id, r])),
 
   addRecipe: (recipe) => {
@@ -42,6 +44,26 @@ export const useRecipeStore = create((set, get) => ({
       const fav = state.favorite.filter((i) => i.id !== id);
       return { favorite: fav };
     });
+  },
+  setSearchTerm: (term) => {
+    set((state) => ({
+      searchTerm: term,
+      filteredRecipes: state.recipes.filter(
+        (recipe) =>
+          recipe.title.toLowerCase().includes(term.toLowerCase()) ||
+          recipe.description.toLowerCase().includes(term.toLowerCase()),
+      ),
+    }));
+  },
+  setSearching: (i) => {
+    set(() => ({
+      isSeaching: i,
+    }));
+    if (i === false) {
+      set(() => ({
+        filteredRecipes: [],
+      }));
+    }
   },
   deleteRecipe: (id) =>
     set((state) => {

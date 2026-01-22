@@ -1,17 +1,31 @@
 // RecipeList.jsx
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useRecipeStore } from "./recipeStore";
 import { useNavigate } from "react-router-dom";
 function RecipeList() {
   // Track which recipe's menu is open
   const [openMenuId, setOpenMenuId] = useState(null);
   const navigate = useNavigate();
-  const { recipes, addToFavorites, removeFavoriteRecipe, deleteRecipe } =
-    useRecipeStore();
-  const toggleMenu = (id) => {
-    setOpenMenuId(openMenuId === id ? null : id);
-  };
+  const { recipes, filteredRecipes, isSeaching } = useRecipeStore();
+  const display = useMemo(() => {
+    if (isSeaching && filteredRecipes.length > 0) {
+      return filteredRecipes;
+    }
 
+    if (isSeaching && filteredRecipes.length === 0) {
+      return []; // show empty when searching but no results
+    }
+    if (isSeaching && !filteredRecipes) {
+      return recipes;
+    }
+
+    return recipes; // default
+  }, [filteredRecipes, recipes, isSeaching]);
+
+  console.log(isSeaching, filteredRecipes);
+  const toggleMenu = (id) => {
+    setOpenMenuId((prev) => (prev === id ? null : id));
+  };
   return (
     <div
       style={{
@@ -21,7 +35,7 @@ function RecipeList() {
         marginTop: "20px",
       }}
     >
-      {recipes.length === 0 ? (
+      {display?.length === 0 ? (
         <div
           style={{
             marginTop: "40px",
@@ -30,7 +44,7 @@ function RecipeList() {
             fontSize: "16px",
           }}
         >
-          No recipes added yet 🍽️
+          No recipes 🍽️
         </div>
       ) : (
         <div
@@ -41,7 +55,7 @@ function RecipeList() {
             marginTop: "20px",
           }}
         >
-          {recipes.map((recipe) => (
+          {display.map((recipe) => (
             <div
               key={recipe.id}
               style={{
