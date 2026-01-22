@@ -1,7 +1,7 @@
 // RecipeList.jsx
 import React, { useState, useMemo } from "react";
 import { useRecipeStore } from "./recipeStore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function RecipeList() {
   // Track which recipe's menu is open
   const [openMenuId, setOpenMenuId] = useState(null);
@@ -116,20 +116,21 @@ function RecipeList() {
                     >
                       {recipe.favorite ? "❤️ Favorited" : "Add to Favorites"}
                     </button>
+                    <Link to={`/recipeDetail/${recipe.id}`}>
+                      <button
+                        style={{
+                          padding: "6px 12px",
+                          border: "none",
+                          borderRadius: "6px",
+                          cursor: "pointer",
+                          background: "#007bff",
+                          color: "#fff",
+                        }}
+                      >
+                        View Details
+                      </button>
+                    </Link>
 
-                    <button
-                      onClick={() => navigate(`/recipeDetail/${recipe.id}`)}
-                      style={{
-                        padding: "6px 12px",
-                        border: "none",
-                        borderRadius: "6px",
-                        cursor: "pointer",
-                        background: "#007bff",
-                        color: "#fff",
-                      }}
-                    >
-                      View Details
-                    </button>
                     <button
                       onClick={() => alert(`Viewing details}`)}
                       style={{
