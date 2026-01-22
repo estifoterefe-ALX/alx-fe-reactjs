@@ -1,7 +1,7 @@
 import { useRecipeStore } from "./recipeStore";
 import { useParams, useNavigate } from "react-router-dom";
 import { DeleteRecipeButton } from "./DeleteRecipeButton";
-export const RecipeDetails = () => {
+const RecipeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getRecipeById } = useRecipeStore();
@@ -60,15 +60,16 @@ export const RecipeDetails = () => {
             cursor: "pointer",
           }}
           onClick={() => {
-            navigate(`/updateRecipe/${id}`);
+            navigate(`/updateRecipe/${recipe.id}`);
           }}
         >
           ✏️ Edit Recipe
         </button>
 
         {/* Delete */}
-        <DeleteRecipeButton id={id} />
+        <DeleteRecipeButton id={recipe.id} />
       </div>
     </div>
   );
 };
+export default RecipeDetails;
