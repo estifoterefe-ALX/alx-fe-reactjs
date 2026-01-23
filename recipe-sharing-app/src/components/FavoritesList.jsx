@@ -8,7 +8,7 @@ function FavoritesList() {
   // Track which recipe's menu is open
   const [openMenuId, setOpenMenuId] = useState(null);
   //const navigate = useNavigate();
-  const recipes = useStoreRecipe.use.favorite;
+  const recipes = useStoreRecipe.use.favorites;
   const isSeaching = useStoreRecipe.use.isSeaching;
   const filteredRecipes = useStoreRecipe.use.filteredRecipes;
   const display = useMemo(() => {

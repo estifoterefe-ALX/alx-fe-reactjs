@@ -2,7 +2,7 @@ import { create } from "zustand";
 import createSelectors from "./utils/selector";
 export const useRecipeStore = create((set, get) => ({
   recipes: [],
-  favorite: [],
+  favorites: [],
   filteredRecipes: [],
   recommendations: [],
   isSeaching: false,
@@ -26,7 +26,7 @@ export const useRecipeStore = create((set, get) => ({
     const recipe = byId[recipeId];
     if (recipe) {
       set((state) => ({
-        favorite: [...state.favorite, recipe],
+        favorites: [...state.favorites, recipe],
       }));
     }
   },
@@ -42,8 +42,8 @@ export const useRecipeStore = create((set, get) => ({
   },
   removeFavoriteRecipe: (id) => {
     set((state) => {
-      const fav = state.favorite.filter((i) => i.id !== id);
-      return { favorite: fav };
+      const fav = state.favorites.filter((i) => i.id !== id);
+      return { favorites: fav };
     });
   },
   setSearchTerm: (term) => {
