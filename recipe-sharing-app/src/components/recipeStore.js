@@ -4,6 +4,7 @@ export const useRecipeStore = create((set, get) => ({
   recipes: [],
   favorite: [],
   filteredRecipes: [],
+  recommendations: [],
   isSeaching: false,
   recipesById: () => Object.fromEntries(get().recipes.map((r) => [r.id, r])),
 
