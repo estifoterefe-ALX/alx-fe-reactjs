@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import createSelectors from "./utils/selector";
 export const useRecipeStore = create((set, get) => ({
   recipes: [],
   favorite: [],
@@ -71,3 +71,5 @@ export const useRecipeStore = create((set, get) => ({
       return { recipes: recipes };
     }),
 }));
+
+export const useStoreRecipe = createSelectors(useRecipeStore);

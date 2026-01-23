@@ -2,10 +2,11 @@
 import React, { useState, useMemo } from "react";
 import { useRecipeStore } from "./recipeStore";
 import { Link, useNavigate } from "react-router-dom";
+import { DeleteRecipeButton } from "./DeleteRecipeButton";
 function RecipeList() {
   // Track which recipe's menu is open
   const [openMenuId, setOpenMenuId] = useState(null);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const { recipes, filteredRecipes, isSeaching } = useRecipeStore();
   const display = useMemo(() => {
     if (isSeaching && filteredRecipes.length > 0) {
@@ -131,19 +132,7 @@ function RecipeList() {
                       </button>
                     </Link>
 
-                    <button
-                      onClick={() => alert(`Viewing details}`)}
-                      style={{
-                        padding: "6px 12px",
-                        border: "none",
-                        borderRadius: "6px",
-                        cursor: "pointer",
-                        background: "#ff0000",
-                        color: "#fff",
-                      }}
-                    >
-                      Delete Recipe
-                    </button>
+                    <DeleteRecipeButton id={recipe.id} />
                   </div>
                 )}
               </div>
