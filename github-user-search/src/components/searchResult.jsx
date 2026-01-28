@@ -1,9 +1,17 @@
 import React from "react";
 import useSearchUserStore from "../services/searchuser";
+import { useNavigate } from "react-router-dom";
 function SearchResult() {
   const searchResult = useSearchUserStore((state) => state.searchResult);
+  const navigate = useNavigate();
   return (
     <>
+      <button
+        onClick={() => navigate("/")}
+        className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200"
+      >
+        Back to home
+      </button>
       {searchResult ? (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
           <img
