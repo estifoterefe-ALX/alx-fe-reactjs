@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 //import { useSilentAuth } from "./services/useSilentRefresh";
-import ProtectedRoute from "./services/ProtectedRoute";
-import PrivateRoute from "./services/PermissionRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PrivateRoute from "./components/PermissionRoute";
 function App() {
   //useSilentAuth();
   return (
