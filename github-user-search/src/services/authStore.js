@@ -1,6 +1,7 @@
 // stores/authStore.js
-import create from "zustand";
-import createSelectors from "./utils/selector";
+import { create } from "zustand";
+
+import createSelectors from "../utils/selector";
 
 export const useAuthStore = create((set, get) => ({
   user: null, // user info
