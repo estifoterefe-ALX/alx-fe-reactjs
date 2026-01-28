@@ -1,11 +1,22 @@
-import React from "react";
+import React, { use } from "react";
+import { searchGitHubUsers } from "../services/githubService";
+import useSearchUserStore from "../services/searchuser";
+import { Navigate, useNavigate } from "react-router-dom";
 function Search() {
   const [input, setInput] = React.useState("");
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const setSearchResult = useSearchUserStore((state) => state.setSearchResult);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const query = e.target.elements.search.value;
-    console.log("Searching for:", query);
-    // Add search logic here
+    console.log("Searching for:", input);
+    try {
+      const userData = await searchGitHubUsers(input);
+      setSearchResult(userData);
+    } catch (error) {
+      console.log("Error during search:", error);
+    } finally {
+      navigate("/searchResults");
+    }
   };
   return (
     <>
