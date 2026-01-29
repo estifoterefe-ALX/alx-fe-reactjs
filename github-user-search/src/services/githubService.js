@@ -7,7 +7,7 @@ export const fetchUserData = async (userName, query) => {
   try {
 
 
-    const response = await api.get("/search/users?q", {
+    const response = await api.get("/search/users", {
       params: {
         userName: userName,
         per_page: pageperPage,
