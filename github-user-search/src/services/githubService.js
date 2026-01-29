@@ -5,9 +5,7 @@ import useSearchUserStore from "./searchuser";
 export const fetchUserData = async (userName, query) => {
   const { pageperPage } = useSearchUserStore.getState();
   try {
-    const q = [userName].filter(Boolean).join(" ");
-
-    const response = await api.get("https://api.github.com/search/users?q", {
+    const response = await api.get("/users?q", {
       params: {
         userName: userName,
         per_page: pageperPage,
