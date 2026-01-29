@@ -5,11 +5,13 @@ import { Navigate, useNavigate } from "react-router-dom";
 function Search() {
   const [input, setInput] = React.useState("");
   const navigate = useNavigate();
+  const [Loading, setLoading] = React.useState(false);
   const setSearchResult = useSearchUserStore((state) => state.setSearchResult);
   const searchResult = useSearchUserStore((state) => state.searchResult);
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Searching for:", input);
+    setLoading(true);
     try {
       const userData = await fetchUserData(input);
       setSearchResult(userData);
@@ -17,6 +19,7 @@ function Search() {
       console.log("Error during search:", error);
     } finally {
       navigate("/searchResults");
+      setLoading(false);
     }
   };
   return (
@@ -43,6 +46,7 @@ function Search() {
           Search
         </button>
       </form>
+      {Loading ? <p>Loading...</p> : null}
       {searchResult ? (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
           <img
@@ -58,7 +62,7 @@ function Search() {
           </p>
         </div>
       ) : (
-        <p>No search results found.</p>
+        <p>Looks like we cant find the user</p>
       )}
     </>
   );
