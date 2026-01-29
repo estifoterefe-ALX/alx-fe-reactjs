@@ -1,7 +1,9 @@
 import React, { use } from "react";
 import { fetchUserData } from "../services/githubService";
 import useSearchUserStore from "../services/searchuser";
-import { Navigate, useNavigate, useEffect } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Search() {
   const [input, setInput] = React.useState("");
   const navigate = useNavigate();
