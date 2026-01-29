@@ -4,7 +4,7 @@ import useSearchUserStore from "./searchuser";
 export const fetchUserData = async (userName) => {
   const { pageperPage } = useSearchUserStore.getState();
 
-  // Build proper GitHub search query
+  // Construct GitHub search query correctly
   const query = `${userName}+repos:>10+location:lagos`;
 
   try {
@@ -18,9 +18,9 @@ export const fetchUserData = async (userName) => {
     return response.data;
   } catch (error) {
     console.error(
-      "Error searching GitHub users:",
+      "GitHub API error:",
       error.response?.status,
-      error.response?.data,
+      error.response?.data
     );
     return null;
   }
