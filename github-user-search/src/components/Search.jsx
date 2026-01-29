@@ -16,10 +16,11 @@ function Search() {
     setLoading(true);
     try {
       const userData = await fetchUserData(input, query);
-      setSearchResult(userData);
+      setSearchResult(userData.items);
     } catch (error) {
       console.log("Error during search:", error);
     } finally {
+      // navigate("/searchResults");
       setLoading(false);
     }
   };
@@ -47,23 +48,42 @@ function Search() {
           Search
         </button>
       </form>
-      {Loading ? <p>Loading...</p> : null}
-      {searchResult ? (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
-          <img
-            src={searchResult.items[0]?.avatar_url}
-            alt={searchResult.items[0]?.login}
-            className="w-24 h-24 rounded-full mx-auto mb-4"
-          />
-          <h2 className="text-xl font-semibold text-center text-gray-800">
-            {searchResult.items[0]?.login}
-          </h2>
-          <p className="text-gray-600 text-center">
-            {searchResult.items[0]?.bio || "No bio available"}
-          </p>
-        </div>
+      {Loading ? (
+        <p>Loading...</p>
       ) : (
-        <p>Looks like we cant find the user</p>
+        <>
+          {searchResult ? (
+            searchResult.map((user) => {
+              return (
+                <div
+                  key={user.id}
+                  className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md"
+                >
+                  <img
+                    src={user.avatar_url}
+                    alt={user.login}
+                    className="w-24 h-24 rounded-full mx-auto mb-4"
+                  />
+
+                  <h2 className="text-xl font-semibold text-center text-gray-800">
+                    {user.login}
+                  </h2>
+
+                  <a
+                    href={user.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center text-blue-600 hover:underline mt-2"
+                  >
+                    View GitHub Profile
+                  </a>
+                </div>
+              );
+            })
+          ) : (
+            <p>No search results found.</p>
+          )}
+        </>
       )}
     </>
   );
