@@ -8,17 +8,17 @@ function Search() {
   const [Loading, setLoading] = React.useState(false);
   const setSearchResult = useSearchUserStore((state) => state.setSearchResult);
   const searchResult = useSearchUserStore((state) => state.searchResult);
+  const query = "location:ethiopia";
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Searching for:", input);
     setLoading(true);
     try {
-      const userData = await fetchUserData(input);
+      const userData = await fetchUserData(input, query);
       setSearchResult(userData);
     } catch (error) {
       console.log("Error during search:", error);
     } finally {
-      navigate("/searchResults");
       setLoading(false);
     }
   };
@@ -50,15 +50,15 @@ function Search() {
       {searchResult ? (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
           <img
-            src={searchResult.avatar_url}
-            alt={searchResult.login}
+            src={searchResult.items[0].avatar_url}
+            alt={searchResult.items[0].login}
             className="w-24 h-24 rounded-full mx-auto mb-4"
           />
           <h2 className="text-xl font-semibold text-center text-gray-800">
-            {searchResult.login}
+            {searchResult.items[0].login}
           </h2>
           <p className="text-gray-600 text-center">
-            {searchResult.bio || "No bio available"}
+            {searchResult.items[0].bio || "No bio available"}
           </p>
         </div>
       ) : (
