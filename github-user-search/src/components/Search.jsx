@@ -105,7 +105,7 @@ function Search() {
               );
             })
           ) : (
-            <p>No search results found.</p>
+            <p>Looks like we cant find the user</p>
           )}
           {noItems > itemsToShow?.length && (
             <div className="text-center mt-4 mb-4">
