@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { searchGitHubUsers } from "../services/githubService";
+import { fetchUserData } from "../services/githubService";
 import useSearchUserStore from "../services/searchuser";
 import { Navigate, useNavigate } from "react-router-dom";
 function Search() {
@@ -10,7 +10,7 @@ function Search() {
     e.preventDefault();
     console.log("Searching for:", input);
     try {
-      const userData = await searchGitHubUsers(input);
+      const userData = await fetchUserData(input);
       setSearchResult(userData);
     } catch (error) {
       console.log("Error during search:", error);

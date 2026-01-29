@@ -1,6 +1,7 @@
 import api from "./api";
+import axios from "axios";
 
-export const searchGitHubUsers = async (userName) => {
+export const fetchUserData = async (userName) => {
   try {
     const response = await api.get(`/users/${userName}`);
     return response.data;
