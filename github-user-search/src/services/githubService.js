@@ -7,9 +7,9 @@ export const fetchUserData = async (userName, query) => {
   try {
     const q = [userName].filter(Boolean).join(" ");
 
-    const response = await api.get("/search/users", {
+    const response = await api.get("https://api.github.com/search/users?q", {
       params: {
-        q,
+        userName: userName,
         per_page: pageperPage,
         minRepos: 10,
         location: "lagos",
