@@ -1,27 +1,25 @@
 import api from "./api";
+import axios from "axios";
 import useSearchUserStore from "./searchuser";
 
-export const fetchUserData = async (userName) => {
+export const fetchUserData = async (userName, query) => {
   const { pageperPage } = useSearchUserStore.getState();
-
-  // Construct GitHub search query correctly
-  const query = `${userName}+repos:>10+location:lagos`;
-
   try {
-    const response = await api.get("/search/users", {
+    const q = [userName].filter(Boolean).join(" ");
+
+    const response = await api.get("https://api.github.com/search/users?q", {
       params: {
-        q: query,
+        userName: userName,
         per_page: pageperPage,
+        minRepos: 10,
+        location: "lagos",
       },
     });
 
     return response.data;
   } catch (error) {
-    console.error(
-      "GitHub API error:",
-      error.response?.status,
-      error.response?.data
-    );
+    console.error("Error searching GitHub users:", error);
     return null;
   }
 };
+
