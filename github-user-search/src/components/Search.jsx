@@ -8,19 +8,43 @@ function Search() {
   const [Loading, setLoading] = React.useState(false);
   const setSearchResult = useSearchUserStore((state) => state.setSearchResult);
   const searchResult = useSearchUserStore((state) => state.searchResult);
+  const setQuery = useSearchUserStore((state) => state.setQuery);
+  const setInputStore = useSearchUserStore((state) => state.setInput);
+  const setNoItems = useSearchUserStore((state) => state.setNoItems);
   const query = "location:lagos";
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Searching for:", input);
-    setLoading(true);
+  const [itemsToShow, setItemsToShow] = React.useState(null);
+  const incPageNo = useSearchUserStore((state) => state.incPageNo);
+  const noItems = useSearchUserStore((state) => state.noItems);
+  const handleInc = async () => {
+    console.log("Loading more users...");
+    incPageNo();
     try {
       const userData = await fetchUserData(input, query);
       setSearchResult(userData.items);
     } catch (error) {
+      console.log("Error loading more users:", error);
+    }
+  };
+  console.log("Search Result:", searchResult);
+
+  useEffect(() => {
+    setItemsToShow(searchResult);
+  }, [searchResult]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Searching for:", input);
+    setInputStore(input);
+    setQuery(query);
+    setLoading(true);
+    try {
+      const userData = await fetchUserData(input, query);
+      setSearchResult(userData.items);
+      setNoItems(userData.total_count);
+    } catch (error) {
       console.log("Error during search:", error);
     } finally {
-      // navigate("/searchResults");
+      navigate("/searchResults");
       setLoading(false);
     }
   };
@@ -52,8 +76,8 @@ function Search() {
         <p>Loading...</p>
       ) : (
         <>
-          {searchResult ? (
-            searchResult.map((user) => {
+          {itemsToShow ? (
+            itemsToShow.map((user) => {
               return (
                 <div
                   key={user.id}
@@ -82,6 +106,16 @@ function Search() {
             })
           ) : (
             <p>No search results found.</p>
+          )}
+          {noItems > itemsToShow?.length && (
+            <div className="text-center mt-4 mb-4">
+              <button
+                onClick={handleInc}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Load More
+              </button>
+            </div>
           )}
         </>
       )}
