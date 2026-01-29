@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { fetchUserData } from "../services/githubService";
 import useSearchUserStore from "../services/searchuser";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useEffect } from "react-router-dom";
 function Search() {
   const [input, setInput] = React.useState("");
   const navigate = useNavigate();
@@ -15,17 +15,16 @@ function Search() {
   const [itemsToShow, setItemsToShow] = React.useState(null);
   const incPageNo = useSearchUserStore((state) => state.incPageNo);
   const noItems = useSearchUserStore((state) => state.noItems);
+  const [error, setError] = React.useState(null);
   const handleInc = async () => {
-    console.log("Loading more users...");
     incPageNo();
     try {
       const userData = await fetchUserData(input, query);
       setSearchResult(userData.items);
     } catch (error) {
-      console.log("Error loading more users:", error);
+      setError("Failed to load more users.", error);
     }
   };
-  console.log("Search Result:", searchResult);
 
   useEffect(() => {
     setItemsToShow(searchResult);
@@ -33,7 +32,6 @@ function Search() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Searching for:", input);
     setInputStore(input);
     setQuery(query);
     setLoading(true);
@@ -42,7 +40,7 @@ function Search() {
       setSearchResult(userData.items);
       setNoItems(userData.total_count);
     } catch (error) {
-      console.log("Error during search:", error);
+      setError("Failed to fetch users.", error);
     } finally {
       navigate("/searchResults");
       setLoading(false);
@@ -117,6 +115,7 @@ function Search() {
               </button>
             </div>
           )}
+          {error && <p className="text-red-500 text-center">{error}</p>}
         </>
       )}
     </>

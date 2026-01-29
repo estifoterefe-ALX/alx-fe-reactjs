@@ -11,18 +11,16 @@ function SearchResult() {
   const input = useSearchUserStore((state) => state.input);
   const query = useSearchUserStore((state) => state.query);
   const noItems = useSearchUserStore((state) => state.noItems);
+  const [error, setError] = React.useState(null);
   const handleInc = async () => {
-    console.log("Loading more users...");
     incPageNo();
     try {
       const userData = await fetchUserData(input, query);
       setSearchResult(userData.items);
     } catch (error) {
-      console.log("Error loading more users:", error);
+      setError("Failed to load more users.", error);
     }
   };
-  console.log("Search Result:", searchResult);
-
   useEffect(() => {
     setItemsToShow(searchResult);
   }, [searchResult]);
@@ -76,6 +74,7 @@ function SearchResult() {
           </button>
         </div>
       )}
+      {error && <p className="text-red-500 text-center">{error}</p>}
     </>
   );
 }
