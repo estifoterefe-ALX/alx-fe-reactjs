@@ -1,18 +1,27 @@
 import api from "./api";
-import axios from "axios";
 import useSearchUserStore from "./searchuser";
 
 export const fetchUserData = async (userName, query) => {
   const { pageperPage } = useSearchUserStore.getState();
   try {
-    const q = [userName].filter(Boolean).join(" ");
+    // Build search query parameters
+    const queryParts = [];
+    if (userName) {
+      queryParts.push(userName);
+    }
+    if (query) {
+      queryParts.push(query);
+    }
 
-    const response = await api.get("https://api.github.com/search/users?q", {
+    // Add minimum repositories filter
+    queryParts.push("repos:>=10");
+
+    const q = queryParts.join(" ");
+
+    const response = await api.get("/search/users", {
       params: {
-        userName: userName,
+        q: q,
         per_page: pageperPage,
-        minRepos: 10,
-        location: "lagos",
       },
     });
 
@@ -22,4 +31,3 @@ export const fetchUserData = async (userName, query) => {
     return null;
   }
 };
-

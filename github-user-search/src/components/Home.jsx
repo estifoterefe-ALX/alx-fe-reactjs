@@ -11,7 +11,7 @@ function Home() {
     clearSearchResult();
   }, [clearSearchResult]);
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center dark:bg-gray-900">
       <Search />
     </div>
   );

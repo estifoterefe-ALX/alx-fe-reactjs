@@ -3,6 +3,7 @@ import { fetchUserData } from "../services/githubService";
 import useSearchUserStore from "../services/searchuser";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ThemeToggle from "../utils/themeToggle";
 
 function Search() {
   const [input, setInput] = React.useState("");
@@ -50,11 +51,15 @@ function Search() {
   };
   return (
     <>
+      <ThemeToggle />
       <form
         onSubmit={handleSubmit}
-        className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md flex flex-col gap-4"
+        className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md flex flex-col gap-4 dark:bg-gray-800"
       >
-        <label htmlFor="search" className="text-gray-700 font-semibold">
+        <label
+          htmlFor="search"
+          className="text-gray-700 font-semibold dark:text-white"
+        >
           GitHub Users
         </label>
         <input
@@ -72,54 +77,6 @@ function Search() {
           Search
         </button>
       </form>
-      {Loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          {itemsToShow ? (
-            itemsToShow.map((user) => {
-              return (
-                <div
-                  key={user.id}
-                  className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md"
-                >
-                  <img
-                    src={user.avatar_url}
-                    alt={user.login}
-                    className="w-24 h-24 rounded-full mx-auto mb-4"
-                  />
-
-                  <h2 className="text-xl font-semibold text-center text-gray-800">
-                    {user.login}
-                  </h2>
-
-                  <a
-                    href={user.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center text-blue-600 hover:underline mt-2"
-                  >
-                    View GitHub Profile
-                  </a>
-                </div>
-              );
-            })
-          ) : (
-            <p>Looks like we cant find the user</p>
-          )}
-          {noItems > itemsToShow?.length && (
-            <div className="text-center mt-4 mb-4">
-              <button
-                onClick={handleInc}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-              >
-                Load More
-              </button>
-            </div>
-          )}
-          {error && <p className="text-red-500 text-center">{error}</p>}
-        </>
-      )}
     </>
   );
 }
