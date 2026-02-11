@@ -1,7 +1,9 @@
+import HomePage from "./components/HomePage";
+
 function App() {
   return (
     <>
-      <p className="text-red-500">Welcome to the Recipe Sharing Platform!</p>
+      <HomePage />
     </>
   );
 }
