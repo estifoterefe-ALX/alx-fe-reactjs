@@ -19,7 +19,7 @@ function HomePage() {
       <div>
         <h2 className="text-2xl font-semibold mt-10">Featured Recipes</h2>
         <div className="bg-white rounded-lg shadow-md p-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-5 xl:grid-cols-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5 xl:grid-cols-5">
             {recipes.length > 0 ? (
               recipes?.map((recipe) => (
                 <div
