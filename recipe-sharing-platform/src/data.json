@@ -10,6 +10,14 @@
       "Parmesan cheese",
       "Bacon",
       "Black pepper"
+    ],
+    "instructions": [
+      "Cook spaghetti according to package instructions.",
+      "In a bowl, whisk together eggs and Parmesan cheese.",
+      "In a pan, cook bacon until crispy. Remove and set aside.",
+      "Add cooked spaghetti to the pan with bacon fat. Toss to coat.",
+      "Remove from heat and quickly mix in the egg and cheese mixture.",
+      "Season with black pepper and serve immediately."
     ]
   },
   {
@@ -23,6 +31,14 @@
       "Cream",
       "Garam masala",
       "Onions"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and spices for at least 2 hours.",
+      "Grill or bake the chicken until fully cooked.",
+      "In a pan, sauté onions until golden brown.",
+      "Add tomato sauce and simmer for 10 minutes.",
+      "Stir in cream and garam masala, then add the cooked chicken.",
+      "Simmer for another 5 minutes and serve hot."
     ]
   },
 
@@ -37,6 +53,14 @@
       "Parmesan cheese",
       "Bacon",
       "Black pepper"
+    ],
+    "instructions": [
+      "Cook spaghetti according to package instructions.",
+      "In a bowl, whisk together eggs and Parmesan cheese.",
+      "In a pan, cook bacon until crispy. Remove and set aside.",
+      "Add cooked spaghetti to the pan with bacon fat. Toss to coat.",
+      "Remove from heat and quickly mix in the egg and cheese mixture.",
+      "Season with black pepper and serve immediately."
     ]
   },
   {
@@ -50,6 +74,14 @@
       "Cream",
       "Garam masala",
       "Onions"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and spices for at least 2 hours.",
+      "Grill or bake the chicken until fully cooked.",
+      "In a pan, sauté onions until golden brown.",
+      "Add tomato sauce and simmer for 10 minutes.",
+      "Stir in cream and garam masala, then add the cooked chicken.",
+      "Simmer for another 5 minutes and serve hot."
     ]
   }
 ]
