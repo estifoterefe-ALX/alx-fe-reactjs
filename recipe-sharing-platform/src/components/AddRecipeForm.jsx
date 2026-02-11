@@ -33,7 +33,6 @@ function AddRecipeForm() {
     if (!formData.image) newErrors.image = "Image is required";
     return newErrors;
   };
-  console.log(errors);
   const handleUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -54,7 +53,10 @@ function AddRecipeForm() {
       <h1 className="text-4xl font-bold text-center mt-10 mb-6">
         Add a New Recipe
       </h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="w-xl sm:min-w-2xl md:min-w-4xl lg:w-full mx-auto bg-white p-8 rounded-lg shadow-md"
+      >
         <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
           <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
             Title
