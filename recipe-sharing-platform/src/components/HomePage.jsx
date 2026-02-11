@@ -9,7 +9,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8 min-h-screen">
       <h1 className="text-4xl font-bold text-center mt-10">
         Welcome to the Recipe Sharing Platform
       </h1>
