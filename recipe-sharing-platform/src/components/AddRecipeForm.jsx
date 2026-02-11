@@ -4,6 +4,7 @@ function AddRecipeForm() {
   const navigate = useNavigate();
   const imageViewer = useRef(null);
   const lable = useRef(null);
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     title: "",
     summary: "",
@@ -11,7 +12,20 @@ function AddRecipeForm() {
     instructions: "",
     image: "",
   });
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    if (!formData.title) newErrors.title = "Title is required";
+    if (!formData.summary) newErrors.summary = "Summary is required";
+    if (!formData.ingredients)
+      newErrors.ingredients = "Ingredients are required";
+    if (!formData.instructions)
+      newErrors.instructions = "Instructions are required";
+    if (!formData.image) newErrors.image = "Image is required";
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     alert("Recipe submitted successfully!");
   };
   const handleUpload = (e) => {
@@ -34,11 +48,14 @@ function AddRecipeForm() {
       <h1 className="text-4xl font-bold text-center mt-10 mb-6">
         Add a New Recipe
       </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
           <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
             Title
           </label>
+          {errors.title && (
+            <p className="text-red-500 text-xs italic">{errors.title}</p>
+          )}
           <input
             type="text"
             id="title"
@@ -55,6 +72,9 @@ function AddRecipeForm() {
           >
             Summary
           </label>
+          {errors.summary && (
+            <p className="text-red-500 text-xs italic">{errors.summary}</p>
+          )}
           <textarea
             id="summary"
             name="summary"
@@ -73,6 +93,9 @@ function AddRecipeForm() {
           >
             Ingredients
           </label>
+          {errors.ingredients && (
+            <p className="text-red-500 text-xs italic">{errors.ingredients}</p>
+          )}
           <textarea
             id="ingredients"
             name="ingredients"
@@ -91,6 +114,9 @@ function AddRecipeForm() {
           >
             Instructions steps
           </label>
+          {errors.instructions && (
+            <p className="text-red-500 text-xs italic">{errors.instructions}</p>
+          )}
           <textarea
             id="instructions"
             name="instructions"
@@ -105,6 +131,9 @@ function AddRecipeForm() {
           <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
             image
           </label>
+          {errors.image && (
+            <p className="text-red-500 text-xs italic">{errors.image}</p>
+          )}
           <input
             id="image"
             name="image"
