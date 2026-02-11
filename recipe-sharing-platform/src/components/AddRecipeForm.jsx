@@ -1,0 +1,153 @@
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+function AddRecipeForm() {
+  const navigate = useNavigate();
+  const imageViewer = useRef(null);
+  const lable = useRef(null);
+  const [formData, setFormData] = useState({
+    title: "",
+    summary: "",
+    ingredients: "",
+    instructions: "",
+    image: "",
+  });
+  const handleSubmit = () => {
+    alert("Recipe submitted successfully!");
+  };
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setFormData({ ...formData, image: reader.result });
+        lable.current.classList.remove("hidden");
+        imageViewer.current.classList.remove("hidden");
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return (
+    <div className="container mx-auto px-4 py-8 min-h-screen">
+      <h1 className="text-4xl font-bold text-center mt-10 mb-6">
+        Add a New Recipe
+      </h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
+          <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            value={formData.title}
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
+          />
+          <label
+            htmlFor="summary"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Summary
+          </label>
+          <textarea
+            id="summary"
+            name="summary"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            value={formData.summary}
+            onChange={(e) =>
+              setFormData({ ...formData, summary: e.target.value })
+            }
+          ></textarea>
+        </div>
+
+        <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
+          <label
+            htmlFor="ingredients"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Ingredients
+          </label>
+          <textarea
+            id="ingredients"
+            name="ingredients"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            value={formData.ingredients}
+            onChange={(e) =>
+              setFormData({ ...formData, ingredients: e.target.value })
+            }
+          ></textarea>
+        </div>
+
+        <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
+          <label
+            htmlFor="instructions"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Instructions
+          </label>
+          <textarea
+            id="instructions"
+            name="instructions"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            value={formData.instructions}
+            onChange={(e) =>
+              setFormData({ ...formData, instructions: e.target.value })
+            }
+          ></textarea>
+        </div>
+        <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
+          <label
+            htmlFor="instructions"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            image
+          </label>
+          <input
+            id="image"
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleUpload(e)}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+          ></input>
+          <label
+            htmlFor="Preview"
+            className="block text-gray-700 font-bold mb-2 hidden"
+            ref={lable}
+          >
+            Preview
+          </label>
+          <img
+            src={formData.image}
+            alt=""
+            className="mt-2 max-w-xs hidden"
+            ref={imageViewer}
+          />
+        </div>
+
+        <div className="flex justify-center mt-6">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+          >
+            Submit Recipe
+          </button>
+          <button
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline ml-4"
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default AddRecipeForm;
