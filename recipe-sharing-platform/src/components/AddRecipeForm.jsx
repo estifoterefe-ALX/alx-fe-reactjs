@@ -14,6 +14,15 @@ function AddRecipeForm() {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length === 0) {
+      alert("Recipe submitted successfully!");
+      navigate("/");
+    } else {
+      setErrors(newErrors);
+    }
+  };
+  const validate = () => {
     const newErrors = {};
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.summary) newErrors.summary = "Summary is required";
@@ -22,12 +31,9 @@ function AddRecipeForm() {
     if (!formData.instructions)
       newErrors.instructions = "Instructions are required";
     if (!formData.image) newErrors.image = "Image is required";
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-    alert("Recipe submitted successfully!");
+    return newErrors;
   };
+  console.log(errors);
   const handleUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
