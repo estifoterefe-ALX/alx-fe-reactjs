@@ -89,7 +89,7 @@ function AddRecipeForm() {
             htmlFor="instructions"
             className="block text-gray-700 font-bold mb-2"
           >
-            Instructions
+            Instructions steps
           </label>
           <textarea
             id="instructions"
@@ -102,10 +102,7 @@ function AddRecipeForm() {
           ></textarea>
         </div>
         <div className="mb-4 border-2 border-gray-200 rounded-lg overflow-hidden p-4">
-          <label
-            htmlFor="instructions"
-            className="block text-gray-700 font-bold mb-2"
-          >
+          <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
             image
           </label>
           <input
