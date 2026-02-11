@@ -86,7 +86,7 @@ function AddRecipeForm() {
           <textarea
             id="summary"
             name="summary"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full min-h-24 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
             value={formData.summary}
             onChange={(e) =>
               setFormData({ ...formData, summary: e.target.value })
@@ -107,7 +107,7 @@ function AddRecipeForm() {
           <textarea
             id="ingredients"
             name="ingredients"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full min-h-24 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
             value={formData.ingredients}
             onChange={(e) =>
               setFormData({ ...formData, ingredients: e.target.value })
@@ -128,7 +128,7 @@ function AddRecipeForm() {
           <textarea
             id="instructions"
             name="instructions"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full min-h-24 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
             value={formData.instructions}
             onChange={(e) =>
               setFormData({ ...formData, instructions: e.target.value })
@@ -148,7 +148,7 @@ function AddRecipeForm() {
             type="file"
             accept="image/*"
             onChange={(e) => handleUpload(e)}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full min-h-12 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           ></input>
           <label
             htmlFor="Preview"
