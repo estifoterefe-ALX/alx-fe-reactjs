@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import recipesData from "../data.json";
 import { useEffect, useState } from "react";
 function RecipeDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState(null);
   useEffect(() => {
     if (recipesData.length > 0 && id) {
@@ -14,7 +15,13 @@ function RecipeDetail() {
   }, [id]);
   return (
     <div className="container mx-auto px-4 py-8 min-h-screen">
-      <h1 className="text-4xl font-bold text-center mt-10 mb-4">
+      <button
+        onClick={() => navigate(-1)}
+        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full"
+      >
+        Back
+      </button>
+      <h1 className="text-4xl font-bold text-center mt-10 mb-6">
         Recipe Detail
       </h1>
       {recipe ? (

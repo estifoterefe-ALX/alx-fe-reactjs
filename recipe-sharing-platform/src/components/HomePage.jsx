@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import recipesData from "../data.json";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
   const navigate = useNavigate();
@@ -24,19 +25,20 @@ function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5 xl:grid-cols-5">
             {recipes.length > 0 ? (
               recipes?.map((recipe) => (
-                <div
-                  key={recipe.id}
-                  className="border-2 border-gray-200 rounded-lg overflow-hidden p-4 hover:shadow-md hover:scale-105 hover:transition-transform hover:duration-300 cursor-pointer"
-                  onClick={() => navigate(`/recipe/${recipe.id}`)}
-                >
-                  <img
-                    src={recipe.image}
-                    alt={recipe.title}
-                    className="w-full h-48 object-cover rounded-lg"
-                  />
-                  <h3 className="text-xl font-bold">{recipe.title}</h3>
-                  <p className="mt-2">{recipe.summary}</p>
-                </div>
+                <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+                  <div
+                    key={recipe.id}
+                    className="border-2 border-gray-200 rounded-lg overflow-hidden p-4 hover:shadow-md hover:scale-105 hover:transition-transform hover:duration-300 cursor-pointer"
+                  >
+                    <img
+                      src={recipe.image}
+                      alt={recipe.title}
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                    <h3 className="text-xl font-bold">{recipe.title}</h3>
+                    <p className="mt-2">{recipe.summary}</p>
+                  </div>
+                </Link>
               ))
             ) : (
               <p className="text-center mt-5 text-red-500">
