@@ -24,7 +24,7 @@ function HomePage() {
               recipes?.map((recipe) => (
                 <div
                   key={recipe.id}
-                  className="border-2 border-gray-200 rounded-lg overflow-hidden p-4"
+                  className="border-2 border-gray-200 rounded-lg overflow-hidden p-4 hover:shadow-md hover:scale-105 hover:transition-transform hover:duration-300 cursor-pointer"
                 >
                   <img
                     src={recipe.image}
