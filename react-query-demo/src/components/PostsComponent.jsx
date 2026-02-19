@@ -4,6 +4,10 @@ function PostsComponent() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["fetchPosts"],
     queryFn: () => axios.get("https://jsonplaceholder.typicode.com/posts"),
+    staleTime: 60000, // 1 minute
+    cacheTime: 300000, // 5 minutes
+    refetchOnWindowFocus: true, // Refetch when window is focused
+    keepPreviousData: true, // Keep previous data while fetching new data
   });
   console.log(data);
   return (
