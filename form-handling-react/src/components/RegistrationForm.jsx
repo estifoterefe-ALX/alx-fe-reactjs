@@ -1,17 +1,15 @@
 import React from "react";
 import { useState } from "react";
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const validate = () => {
     const newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     return newErrors;
   };
   const handleSubmit = (e) => {
@@ -20,7 +18,7 @@ function RegistrationForm() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log("Form submitted", formData);
+      console.log("Form submitted", { username, email, password });
       alert("Form submitted successfully!");
     }
   };
@@ -49,10 +47,8 @@ function RegistrationForm() {
               id="username"
               name="username"
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-              value={formData.username}
-              onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
-              }
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <label
               htmlFor="email"
@@ -68,10 +64,8 @@ function RegistrationForm() {
               id="email"
               name="email"
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label
               htmlFor="password"
@@ -87,10 +81,8 @@ function RegistrationForm() {
               id="password"
               name="password"
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-              value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="flex justify-center mt-6">
