@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 function PostsComponent() {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["fetchPosts"],
     queryFn: () => axios.get("https://jsonplaceholder.typicode.com/posts"),
     staleTime: 60000, // 1 minute
@@ -23,6 +23,7 @@ function PostsComponent() {
           ))}
         </ul>
       )}
+      <button onClick={refetch}>Refetch</button>
     </>
   );
 }
