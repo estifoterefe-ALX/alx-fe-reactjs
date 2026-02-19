@@ -8,7 +8,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/profile" element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/blog" element={<Blog />} />
