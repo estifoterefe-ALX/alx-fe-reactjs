@@ -1,5 +1,5 @@
 {
-  "name": "form-handling-react",
+  "name": "react-query-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "@tailwindcss/vite": "^4.2.0",
-    "formik": "^2.4.9",
+    "@tanstack/react-query": "^5.90.21",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "zod": "^4.3.6"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
