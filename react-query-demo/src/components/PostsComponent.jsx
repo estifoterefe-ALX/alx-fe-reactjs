@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 function PostsComponent() {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["fetchPosts"],
     queryFn: () => axios.get("https://jsonplaceholder.typicode.com/posts"),
   });
   console.log(data);
